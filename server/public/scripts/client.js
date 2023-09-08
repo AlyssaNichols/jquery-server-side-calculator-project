@@ -1,25 +1,25 @@
 $(document).ready(onReady);
-
+let selectedOperator;
 function onReady() {
   console.log("Jquery is loaded");
   getCalculations();
+  $('#plus').on("click", function () {
+    selectedOperator = "+";
+  });
+
+  $('#minus').on("click",function () {
+    selectedOperator = "-";
+  });
+
+  $('#times').on("click",function () {
+    selectedOperator = "*";
+  });
+
+  $('#divide').on("click", function () {
+    selectedOperator = "/";
+  });
+
   $("#equals").on("click", postEquation);
-  
-  $('#add').click(function () {
-    selectedOperator = '+';
-  });
-
-  $('#subtract').click(function () {
-    selectedOperator = '-';
-  });
-
-  $('#multiply').click(function () {
-    selectedOperator = '*';
-  });
-
-  $('#divide').click(function () {
-    selectedOperator = '/';
-  });
 
 };
 
@@ -27,8 +27,8 @@ function onReady() {
 function postEquation() {
     let firstNumber = $("#firstNumber").val();
     let secondNumber = $("#secondNumber").val();
-    let operator = calcHistory.operator;
-    let result = calcHistory.result;
+    let operator = selectedOperator
+    let result = "";
     
   $.ajax({
     method: "POST",
