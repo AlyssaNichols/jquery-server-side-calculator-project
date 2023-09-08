@@ -4,15 +4,36 @@ function onReady() {
   console.log("Jquery is loaded");
   getCalculations();
   $("#equals").on("click", postEquation);
-}
+  
+  $('#add').click(function () {
+    selectedOperator = '+';
+  });
+
+  $('#subtract').click(function () {
+    selectedOperator = '-';
+  });
+
+  $('#multiply').click(function () {
+    selectedOperator = '*';
+  });
+
+  $('#divide').click(function () {
+    selectedOperator = '/';
+  });
+
+};
+
 
 function postEquation() {
     let firstNumber = $("#firstNumber").val();
     let secondNumber = $("#secondNumber").val();
+    let operator = calcHistory.operator;
+    let result = calcHistory.result;
+    
   $.ajax({
     method: "POST",
     url: "/calculations",
-    data: {firstNumber: firstNumber, secondNumber: secondNumber, operator: operator, result: result },
+    data: {firstNumber, secondNumber, operator, result },
   })
     .then(() => {
       getCalculations();
@@ -42,7 +63,7 @@ function appendDom(data) {
   console.log(data);
   console.log("append dom is working");
   $("#list").empty();
-  for (const calculation of data) {
+  for (const calculation of data) {;
     $("#list").append(
       `<li>${calculation.firstNumber}${calculation.operator}${calculation.secondNumber}${calculation.result}</li>`
     );

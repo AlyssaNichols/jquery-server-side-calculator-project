@@ -42,7 +42,6 @@ app.post("/calculations", (req, res) => {
             break;
         case "/":
             calcHistory.result = calcHistory.firstNumber / calcHistory.secondNumber;
-            return;
           }
 
     calculationsArray.push(calcHistory);
