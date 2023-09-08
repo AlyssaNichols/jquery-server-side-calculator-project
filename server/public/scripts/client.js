@@ -65,7 +65,7 @@ function appendDom(data) {
   $("#list").empty();
   for (const calculation of data) {;
     $("#list").append(
-      `<li>${calculation.firstNumber}${calculation.operator}${calculation.secondNumber}${calculation.result}</li>`
+      `<li>${calculation.firstNumber}${calculation.operator}${calculation.secondNumber}=${calculation.result}</li>`
     );
   }
   if (data[data.length - 1] !== undefined) {
