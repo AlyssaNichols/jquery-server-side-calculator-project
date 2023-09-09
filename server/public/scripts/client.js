@@ -68,11 +68,11 @@ function appendDom(data) {
   $("#total").empty();
   for (const calculation of data) {;
     $("#list").append(
-      `<li>${calculation.firstNumber}${calculation.operator}${calculation.secondNumber}=${calculation.result}</li>`
+      `<li>${calculation.firstNumber} ${calculation.operator} ${calculation.secondNumber} = ${calculation.result}</li>`
     );
   }
   if (data[data.length - 1] !== undefined) {
-    console.log("hey idiot");
+    console.log("hey idiot, am i working?");
     $("#total").append(data[data.length - 1].result);
   }
 }
