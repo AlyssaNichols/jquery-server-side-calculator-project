@@ -1,4 +1,53 @@
 body{
-    background-color: white;
+    background-color:rgb(207, 194, 236)
     
 }
+
+#equals {
+    background-color: #d3c6c7;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+#clear {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #plus, #minus, #times, #divide {
+    background-color: #d3c6c7;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type="number"] {
+    width: 120px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .result{
+    width: 400px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    
+  }
+
+  #list{
+        width: 315px;
+        text-align: center;
+        list-style-position: inside; /* This ensures the bullet points are centered */
+  }

@@ -1,3 +1,8 @@
+// added some notes that I'm not even sure make sense but that how I am interpreting
+// things but I am still so confused about GET and POST for some reason
+// relied HEAVILY on notes for this assignment
+// emphasis on HEAVILY lol
+
 $(document).ready(onReady);
 let selectedOperator;
 function onReady() {
@@ -24,28 +29,9 @@ function onReady() {
   $("#clear").on("click", clearList)
 
 };
-
-
-function postEquation() {
-    let firstNumber = $("#firstNumber").val();
-    let secondNumber = $("#secondNumber").val();
-    let operator = selectedOperator
-    let result = "";
-    
-  $.ajax({
-    method: "POST",
-    url: "/calculations",
-    data: {firstNumber, secondNumber, operator, result },
-  })
-    .then(() => {
-      getCalculations();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-$("#firstNumber").val("");
-$("#secondNumber").val("");
-}
+// GET/ retrieve the data that I want to add to the calculationsArray and has the appendDom
+// info in it that loops through and adds objects to the calculationsArray and will 
+// append to the DOM when the post calls it
 
 function getCalculations() {
   $.ajax({
@@ -77,6 +63,29 @@ function appendDom(data) {
   }
 }
 
+//POST to /calculations that will run the GET getCalculations and appendDom
+function postEquation() {
+    let firstNumber = $("#firstNumber").val();
+    let secondNumber = $("#secondNumber").val();
+    let operator = selectedOperator
+    let result = "";
+    
+  $.ajax({
+    method: "POST",
+    url: "/calculations",
+    data: {firstNumber, secondNumber, operator, result },
+  })
+    .then(() => {
+      getCalculations();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+$("#firstNumber").val("");
+$("#secondNumber").val("");
+}
+// POST to /clear which clears the calculationsArray and then runs the GET function getCalculations again
+// which will rerun the appendDom and everything.
 function clearList() {
     $.ajax({
       method: "POST",
