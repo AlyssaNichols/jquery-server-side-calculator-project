@@ -48,6 +48,12 @@ app.post("/calculations", (req, res) => {
     res.sendStatus(201);
 });
 
+app.post("/clear", (req, res) => {
+    console.log("Post request for /clear");
+    calculationsArray = [];
+    res.sendStatus(201);
+  });
+
 
 
 // MUST BE ON BOTTOM OF PAGE

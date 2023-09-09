@@ -21,6 +21,7 @@ function onReady() {
   });
 
   $("#equals").on("click", postEquation);
+  $("#clear").on("click", clearList)
 
 };
 
@@ -75,3 +76,16 @@ function appendDom(data) {
     $("#total").append(data[data.length - 1].result);
   }
 }
+
+function clearList() {
+    $.ajax({
+      method: "POST",
+      url: "/clear",
+    })
+      .then(() => {
+        getCalculations();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
