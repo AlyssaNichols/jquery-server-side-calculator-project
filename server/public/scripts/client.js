@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 let selectedOperator;
 function onReady() {
+   
   console.log("Jquery is loaded");
   getCalculations();
   $('#plus').on("click", function () {
@@ -63,6 +64,7 @@ function appendDom(data) {
   console.log(data);
   console.log("append dom is working");
   $("#list").empty();
+  $("#total").empty();
   for (const calculation of data) {;
     $("#list").append(
       `<li>${calculation.firstNumber}${calculation.operator}${calculation.secondNumber}=${calculation.result}</li>`
