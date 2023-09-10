@@ -8,7 +8,10 @@ let selectedOperator;
 function onReady() {
    
   console.log("Jquery is loaded");
+  // run getCalculations
   getCalculations();
+  // setting the selectedOperator variable value depending on which operator button was clicked
+  // originally set a blank selectedOperator variable within function
   $('#plus').on("click", function () {
     selectedOperator = "+";
   });
@@ -48,16 +51,19 @@ function getCalculations() {
 }
 
 function appendDom(data) {
-  
+  // log the data (will be the response- the calculations array with the new equation in it)
   console.log(data);
   console.log("append dom is working");
+  //empty the list and total so that it doesn't add the array multiple times when adding an equation
   $("#list").empty();
   $("#total").empty();
+  // loop through an array parameter and append the data to the DOM
   for (const calculation of data) {;
     $("#list").append(
       `<li>${calculation.firstNumber} ${calculation.operator} ${calculation.secondNumber} = ${calculation.result}</li>`
     );
   }
+  // append the result of the last equation to the h2 with the id of total
   if (data[data.length - 1] !== undefined) {
     console.log("appending equation total to the DOM");
     $("#total").append(data[data.length - 1].result);
@@ -71,6 +77,8 @@ function postEquation() {
     let operator = selectedOperator
     let result = "";
     
+    // POST the equation data and then run the getCalculations GET which 
+    // includes the appendDOM function
   $.ajax({
     method: "POST",
     url: "/calculations",
@@ -82,6 +90,7 @@ function postEquation() {
     .catch((err) => {
       console.log(err);
     });
+    // empty the input values
 $("#firstNumber").val("");
 $("#secondNumber").val("");
 }
