@@ -48,6 +48,7 @@ function getCalculations() {
 }
 
 function appendDom(data) {
+  
   console.log(data);
   console.log("append dom is working");
   $("#list").empty();
@@ -58,7 +59,7 @@ function appendDom(data) {
     );
   }
   if (data[data.length - 1] !== undefined) {
-    console.log("hey idiot, am i working?");
+    console.log("appending equation total to the DOM");
     $("#total").append(data[data.length - 1].result);
   }
 }

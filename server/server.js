@@ -31,6 +31,14 @@ app.get("/calculations", (req, res) => {
 // then it pushes that object into the calculationsArray to be posted in the DOM body
 app.post("/calculations", (req, res) => {
     console.log("POST request /calculations");
+    // tried to do required fields stretch goal but couldn't get it?
+    const requiredFields = ["firstNumber", "secondNumber", "operator"]; 
+    // for (const field of requiredFields) {
+    //   if (!req.body[field]) {
+    //     return res.status(400).json({ error: `Field '${field}' is missing.` });
+    //   }
+    // }
+  
     console.log(calculationsArray);
     let calculation = req.body;
     //comparison
@@ -52,7 +60,8 @@ app.post("/calculations", (req, res) => {
             break;
         case "/":
             calcHistory.result = calcHistory.firstNumber / calcHistory.secondNumber;
-          }
+          };
+         
 
     calculationsArray.push(calcHistory);
     res.sendStatus(201);
