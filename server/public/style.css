@@ -22,7 +22,7 @@ body{
     cursor: pointer;
   }
 
-  #plus, #minus, #times, #divide {
+  #plus, #minus, #times, #divide, #clearFields {
     background-color: #d3c6c7;
     color: black;
     padding: 5px 10px;

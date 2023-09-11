@@ -6,35 +6,38 @@
 $(document).ready(onReady);
 let selectedOperator;
 function onReady() {
-   
   console.log("Jquery is loaded");
   // run getCalculations
   getCalculations();
   // setting the selectedOperator variable value depending on which operator button was clicked
   // originally set a blank selectedOperator variable within function
-  $('#plus').on("click", function () {
+  $("#plus").on("click", function () {
     selectedOperator = "+";
   });
 
-  $('#minus').on("click",function () {
+  $("#minus").on("click", function () {
     selectedOperator = "-";
   });
 
-  $('#times').on("click",function () {
+  $("#times").on("click", function () {
     selectedOperator = "*";
   });
 
-  $('#divide').on("click", function () {
+  $("#divide").on("click", function () {
     selectedOperator = "/";
   });
-
+  $("#clearFields").on("click", clearFields);
   $("#equals").on("click", postEquation);
-  $("#clear").on("click", clearList)
-
-};
+  $("#clear").on("click", clearList);
+}
 // GET/ retrieve the data that I want to add to the calculationsArray and has the appendDom
-// info in it that loops through and adds objects to the calculationsArray and will 
+// info in it that loops through and adds objects to the calculationsArray and will
 // append to the DOM when the post calls it
+
+function clearFields() {
+  $("#firstNumber").val("");
+  $("#secondNumber").val("");
+}
 
 function getCalculations() {
   $.ajax({
@@ -58,7 +61,7 @@ function appendDom(data) {
   $("#list").empty();
   $("#total").empty();
   // loop through an array parameter and append the data to the DOM
-  for (const calculation of data) {;
+  for (const calculation of data) {
     $("#list").append(
       `<li>${calculation.firstNumber} ${calculation.operator} ${calculation.secondNumber} = ${calculation.result}</li>`
     );
@@ -72,17 +75,24 @@ function appendDom(data) {
 
 //POST to /calculations that will run the GET getCalculations and appendDom
 function postEquation() {
-    let firstNumber = $("#firstNumber").val();
-    let secondNumber = $("#secondNumber").val();
-    let operator = selectedOperator
-    let result = "";
-    
-    // POST the equation data and then run the getCalculations GET which 
-    // includes the appendDOM function
+  let firstNumber = $("#firstNumber").val();
+  let secondNumber = $("#secondNumber").val();
+  let operator = selectedOperator;
+  let result = "";
+
+  // should require all fields, havent tested in my browser yet, did during liveshare
+  // if (!firstNumber || !secondNumber || !operator){
+  //   alert("Please fill in all of the fields and try again!")
+
+  //   return;
+  // };
+
+  // POST the equation data and then run the getCalculations GET which
+  // includes the appendDOM function
   $.ajax({
     method: "POST",
     url: "/calculations",
-    data: {firstNumber, secondNumber, operator, result },
+    data: { firstNumber, secondNumber, operator, result },
   })
     .then(() => {
       getCalculations();
@@ -90,21 +100,35 @@ function postEquation() {
     .catch((err) => {
       console.log(err);
     });
-    // empty the input values
-$("#firstNumber").val("");
-$("#secondNumber").val("");
+  // empty the input values
+  clearFields();
 }
 // POST to /clear which clears the calculationsArray and then runs the GET function getCalculations again
 // which will rerun the appendDom and everything.
+// function clearList() {
+//   $.ajax({
+//     method: "POST",
+//     url: "/clear",
+//   })
+//     .then(() => {
+//       getCalculations();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
+
+// DELETE to /calculations to clear out the history
 function clearList() {
-    $.ajax({
-      method: "POST",
-      url: "/clear",
+  $.ajax({
+    method: "DELETE",
+    url: "/calculations",
+  })
+    .then(() => {
+      console.log("DELETE request for /calc");
+      getCalculations();
     })
-      .then(() => {
-        getCalculations();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    .catch((err) => {
+      console.log(err);
+    });
+};

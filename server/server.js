@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Serve up static files (HTML, CSS, Client JS)
+// point server to public folder
 app.use(express.static("server/public"));
 
 
@@ -32,15 +33,15 @@ app.get("/calculations", (req, res) => {
 app.post("/calculations", (req, res) => {
     console.log("POST request /calculations");
     // tried to do required fields stretch goal but couldn't get it?
-    const requiredFields = ["firstNumber", "secondNumber", "operator"]; 
+    // const requiredFields = ["firstNumber", "secondNumber", "operator"]; 
     // for (const field of requiredFields) {
     //   if (!req.body[field]) {
     //     return res.status(400).json({ error: `Field '${field}' is missing.` });
     //   }
     // }
   
-    console.log(calculationsArray);
     let calculation = req.body;
+    console.log(calculation);
     //comparison
     let calcHistory = {
       firstNumber: Number(calculation.firstNumber),
@@ -69,12 +70,20 @@ app.post("/calculations", (req, res) => {
 
 // POST to /clear to clear out the calculationsArray so the history of equations that 
 // have been run clears out
-app.post("/clear", (req, res) => {
-    console.log("Post request for /clear");
-    calculationsArray = [];
-    res.sendStatus(201);
-  });
 
+// app.post("/clear", (req, res) => {
+//     console.log("Post request for /clear");
+//     calculationsArray = [];
+//     res.sendStatus(201);
+//   });
+
+  app.delete("/calculations", (req, res) => {
+    console.log("DELETE request for /calc");
+  
+    calculationsArray.length = 0;
+  
+    res.send(204);
+  });
 
 
 // MUST BE ON BOTTOM OF PAGE
