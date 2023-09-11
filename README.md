@@ -1,4 +1,5 @@
 # Project Name
+Server side calculator 
 
 ## Description
 
@@ -10,6 +11,12 @@ Welcome to the weekend challenge!
 You are going to be building a server-side calculator. The logic for the calculator **must** be implemented on the server. 
 
 ## Required Features
+
+Need an interface where a user can input 2 number values
+Need 4 working operator buttons
+Need an = button and a C button
+When = is pressed, the logic is run on the server side and it gives an answer and appends the equation into an UL as a list item
+
 
 ### Calculator
 
