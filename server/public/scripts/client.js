@@ -80,12 +80,12 @@ function postEquation() {
   let operator = selectedOperator;
   let result = "";
 
-  // should require all fields, havent tested in my browser yet, did during liveshare
-  // if (!firstNumber || !secondNumber || !operator){
-  //   alert("Please fill in all of the fields and try again!")
+  // requires all fields to be filled in
+  if (!firstNumber || !secondNumber || !operator){
+    alert("Please fill in all of the fields and try again!")
 
-  //   return;
-  // };
+    return;
+  };
 
   // POST the equation data and then run the getCalculations GET which
   // includes the appendDOM function
