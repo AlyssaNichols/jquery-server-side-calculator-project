@@ -16,7 +16,7 @@ This project is a simple mathematical calculator that does all of it's functiona
 
 ## Project Wireframe
 
-![Project Wireframe](images/stretchGoal_interface.gif)
+![Project Wireframe](<images/Screenshot 2023-10-04 at 7.28.50 AM.png>)
 
 ### Built With
 
